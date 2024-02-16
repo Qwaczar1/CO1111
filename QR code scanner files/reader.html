@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>QR scanner</title>
-    <script type="javascript" src="instascan.min.js">
-        import(Instascan);
+    <script>
+        import(Instascan)
     </script>
 </head>
 <body>
@@ -12,6 +12,18 @@
 <video id="preview"></video>
 
 <script>
+
+    Instascan.Camera.getCameras().then(function (cameras) {
+        if (cameras.length > 0) {
+            scanner.start(cameras[0]);
+        } else {
+            console.error('No cameras found.');
+            alert("No cameras found.");
+        }
+    }).catch(function (e) {
+        console.error(e);
+    });
+
     var opts = {
         // Whether to scan continuously for QR codes. If false, use scanner.scan() to
         // manually scan. If true, the scanner emits the "scan" event when a QR code is
@@ -49,16 +61,7 @@
 
     var scanner = new Instascan.Scanner(opts);
 
-    Instascan.Camera.getCameras().then(function (cameras) {
-        if (cameras.length > 0) {
-            scanner.start(cameras[0]);
-        } else {
-            console.error('No cameras found.');
-            alert("No cameras found.");
-        }
-    }).catch(function (e) {
-        console.error(e);
-    });
+
 
 </script>
 
