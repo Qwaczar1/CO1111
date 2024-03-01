@@ -1,7 +1,7 @@
 const cacheName = 'simple-app';
 const filesToCache = [
     '/',
-    'index.html',
+    'testIndex.html',
     'style.css',
     "main.js"
 ];
